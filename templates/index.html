@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>AGRICULTURE</title>
+  <script src="https://kit.fontawesome.com/47101d2035.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+  <style>
+     body {
+      margin: 0;
+      padding: 0;
+      background: url('{% static "images/f1.jpg" %}') no-repeat center center fixed; 
+      background-size: cover;
+    }
+    .navbar-custom {
+      background-color: #414242;
+      padding: 0.5rem 1rem;
+    }
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link {
+      color: rgb(247, 242, 242);
+      font-size: larger;
+    }
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      margin-top: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      color: #f10505;
+      text-align: center;
+      font-size: 2.5rem;
+      margin-top: 2rem;
+      border: 2px solid black;
+      border-radius: 3px;
+      background-color: aliceblue;
+      padding: 5px;
+      width: 800px;
+      position: relative;
+      left: 160px;
+    }
+    .center-div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 56px); /* Adjusted for the height of the navbar */
+    }
+    .btn-custom {
+      background-color: #e74c3c;
+      border-color: #e74c3c;
+    }
+    .btn-custom:hover {
+      background-color: #c0392b;
+      border-color: #c0392b;
+    }
+    label{
+      color: black;
+      font-weight: bolder;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <a class="navbar-brand" href="{% url 'home' %}">Agriculture</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        <a class="nav-item nav-link active" href="{% url 'home' %}">Home</a>
+        <a class="nav-item nav-link" href="{% url 'index' %}">Crop</a>
+        
+        <a class="nav-item nav-link" href="{% url 'index2' %}">Season</a>
+        <a class="nav-item nav-link" href="{% url 'index3' %}">Weather</a>
+        <a class="nav-item nav-link" href="{% url 'index4' %}">Chatbot</a>
+        <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+      </div>
+    </div>
+  </nav>
+  <div class="center-div">
+    <div class="container">
+      <h1>CROP YEILD PREDICTION</h1><br>
+      <div class="row justify-content-md-center">
+        <div class="col-md-8 form-container">
+          <form action="result">
+            {% csrf_token %}
+            <div class="form-group row">
+              <label for="Crop" class="col-sm-2 col-form-label form-label">Crop:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="Crop" placeholder="Crop" name="Crop" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="Crop_Year" class="col-sm-2 col-form-label form-label">Crop_Year:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="Crop_Year" placeholder="Crop_Year" name="Crop_Year" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="Season" class="col-sm-2 col-form-label form-label">Season:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="Season" placeholder="Season" name="Season" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="State" class="col-sm-2 col-form-label form-label">State:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="State" placeholder="State" name="State" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="Area" class="col-sm-2 col-form-label form-label">Area:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="Area" placeholder="Area" name="Area" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="Production" class="col-sm-2 col-form-label form-label">Production:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="Production" placeholder="Production in Kg" name="Production" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="Annual_Rainfall" class="col-sm-2 col-form-label form-label">Annual_Rainfall:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="Annual_Rainfall" placeholder="Annual_Rainfall in cm" name="Annual_Rainfall" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="Fertilizer" class="col-sm-2 col-form-label form-label">Fertilizer:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="Fertilizer" placeholder="Fertilizer in grams" name="Fertilizer" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="Pesticide" class="col-sm-2 col-form-label form-label">Pesticide:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="Pesticide" placeholder="Pesticide in grams" name="Pesticide" required>
+              </div>
+            </div>
+         
+          <div class="form-group row">
+            <div class="col-sm-12">
+              <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
